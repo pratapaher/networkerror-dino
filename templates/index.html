@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Memory Fragment Recovery — Stage 2</title>
+  <link rel="stylesheet" href="/assets/v2/runtime.css" />
+</head>
+<body>
+  <canvas id="bgCanvas"></canvas>
+
+  <div class="page-wrapper">
+    <!-- Instructions -->
+    <div class="instructions">
+      <div class="instructions-title">Memory Fragment Recovery Protocol</div>
+      <ul>
+        <li>Each card contains hidden system fragments.</li>
+        <li>Matching fragments stabilizes corrupted memory.</li>
+        <li>Incorrect matches cause instability — the board reshuffles.</li>
+        <li>Recover all fragments to unlock the terminal.</li>
+      </ul>
+    </div>
+
+    <div class="board-container">
+      <div class="top-bar">
+        <div class="stars" id="stars">⭐⭐⭐</div>
+        <div class="stats">
+          <span>Moves: <strong id="moves">0</strong></span>
+          <span>Time: <strong id="timer">00:00</strong></span>
+        </div>
+        <button class="restart-btn" id="restartBtn" title="Restart">↺</button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+
+    <!-- Final fragment image reveal (shown after all pairs matched) -->
+    <div class="fragment-reveal" id="fragmentReveal" style="display:none">
+      <div class="fragment-label">⚠ Recovered System Fragment</div>
+      <img id="fragmentImg" src="/static/images/final_fragment.png" alt="Fragment" class="fragment-img" />
+
+    </div>
+
+    <!-- Login panel — inline below image, slides in -->
+    <div class="login-panel-wrap" id="loginPanelWrap" style="display:none; width:100%; max-width:500px;">
+    <div class="login-panel" id="loginPanel">
+      <div class="login-box" id="loginBox">
+        <div class="login-title">🔐 Subscription Access</div>
+        <div class="login-subtitle">To play more games enter your valid credentials details for subscription</div>
+        <div class="login-field">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="Enter email" autocomplete="off" />
+        </div>
+        <div class="login-field">
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter password" autocomplete="off" />
+        </div>
+        <div class="login-error" id="loginError"></div>
+        <button class="login-btn" id="loginBtn">LOGIN / SUBSCRIBE</button>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- Corner message -->
+  <div class="corner-msg" id="cornerMsg"></div>
+
+  <!-- Celebration popup (shown after correct login) -->
+  <div class="overlay" id="celebOverlay" style="display:none">
+    <canvas class="confetti-canvas" id="confettiCanvas"></canvas>
+    <div class="celeb-popup">
+      <div class="celeb-title">CONGRATULATIONS 🎉</div>
+      <div class="celeb-msg">Your coupon code is:</div>
+      <div class="coupon-code" id="couponCode"></div>
+      <div class="coupon-section">
+        <label class="coupon-label">Enter your coupon code to scratch</label>
+        <input type="text" id="couponInput" placeholder="Enter coupon code" autocomplete="off" />
+        <div class="coupon-error" id="couponError"></div>
+        <button class="scratch-btn" id="scratchBtn">SCRATCH</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final flag popup -->
+  <div class="overlay" id="flagOverlay" style="display:none">
+    <canvas class="confetti-canvas" id="confettiCanvas2"></canvas>
+    <div class="flag-popup">
+      <div class="flag-decoration">🎊 🏆 🎊</div>
+      <div class="flag-label">FLAG</div>
+      <div class="flag-value" id="flagValue"></div>
+      <div class="flag-decoration">✨ 🎉 ✨</div>
+    </div>
+  </div>
+
+  <!-- Full-screen danger alert -->
+  <div class="danger-alert" id="dangerAlert">
+    <div class="danger-alert-box">
+      <div class="danger-alert-icon">⛔</div>
+      <div class="danger-alert-title" id="dangerAlertTitle">ACCESS DENIED</div>
+      <div class="danger-alert-msg" id="dangerAlertMsg">Invalid credentials</div>
+    </div>
+  </div>
+
+  <script src="/assets/v2/runtime.js"></script>
+</body>
+</html>
